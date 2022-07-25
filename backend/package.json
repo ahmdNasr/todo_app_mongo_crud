@@ -1,0 +1,26 @@
+{
+  "name": "todo-app-crud-backend",
+  "version": "1.0.0",
+  "description": "Todo App using Mongodb and supporing all CRUD Operations",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [
+    "todo",
+    "app"
+  ],
+  "author": "Ahmed Nasr",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.8.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
