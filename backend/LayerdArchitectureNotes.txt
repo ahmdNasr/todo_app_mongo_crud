@@ -1,0 +1,73 @@
+
+/*
+
+Presentation Layer <---> Controller Layer 
+
+                         Facade Layer (express-validator)
+
+Application Layer <--->  Service Layer
+
+Domain Model Layer <---> Domain Layer
+
+Persistence Layer <---> Persistence Layer / Database-Access Layer
+
+
+Aufgaben:
+1. Controller: Http Requests und Responses zu verarbeiten. (Routes) Zb. 
+    * Request Body parsen
+    * Datenpunkte aus req.params, req.query, req.headers, req.body, usw... entnehmen...
+    * eine Response schicken... res.json(), res.send("string"), res.sendFile(), ...
+    * Html-Rendern (res.render())
+    * Middleware Aufgaben wie zb: Logging, Authentication, Body-Parsen, Cors, ...
+
+    "jeder request-handler von express ist ein controller"
+
+    Haupt-Aufgabe: Daten "sammeln" und an die Facade weiterleiten...
+
+2. Facade: Daten-Validierung.
+    * Passen alle required felder-namen ? 
+    * Passen die Inhalte (Länge, min, max, daten-format, ...)
+    * technologie: express-validator, class-validator (typescript)
+
+    Haupt-Aufgabe: Daten validieren und an den Service Layer weitergeben...
+
+3. Application layer / Service Layer / Use-Cases: Business-Logik. Die eigentliche Logik die ausgeführt werden muss.
+    * Login (username + password) 
+        -> exestiert der User überhaupt?
+        -> Password-Hash erstellen
+        -> Passowrd-Hashes vergleichen
+        -> wenns richtig ist
+        -> Token zurücksenden
+        -> wenn irgendwo ein fehler --> Fehler zurückgeben...
+    * Register
+    * AddPost (UserDAO, GroupsDAO, PostDAO) --> DAO = Data-Access-Object
+    * LikeComment
+    * ToggleTodo ...
+
+    Haupt-Aufgabe: Auf Domain-layer und Persistence Layer zuzugreifen UM die Geschäftslogik abzubilden.
+
+4. Domain Layer: Beschreibt die Entitäten (Objekte) in unserer App und ihre Beziehungen. ZB:
+    * User := {
+        firstname,
+        lastname,
+        email,
+        passwordHash,
+        passwordSalt,
+        sixDigitVerificationCode,
+        lastLogin,
+        isOnline,
+        _id,
+        registeredAt,
+        profilePicture,
+        post = [],
+    }
+
+5. Persistence Layer / -Repository / Database-Access Layer : Beschreibt den Zugriff auf die Datenbank + definiert Abfragen.
+    Zum Beispiel:
+    * UserDAO.findAll()
+    * UserDAO.finById(id)
+    * UserDAO.findByEmail(email)
+    * PostsDAO.findByPostedByUserId(userId)
+    * PostsDAO.findPostedInDateRange(startTimestamp, endTimestamp)
+
+*/
